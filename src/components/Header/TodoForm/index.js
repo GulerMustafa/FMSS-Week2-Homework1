@@ -1,8 +1,11 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import validations from "./validitions";
+import { useTodo } from "../../../contexts/TodoContext";
 
 function TodoForm() {
+  const { addTodo } = useTodo();
+
   return (
     <Formik
       initialValues={{
@@ -10,6 +13,9 @@ function TodoForm() {
       }}
       onSubmit={async (values, bag) => {
         console.log(values);
+
+        addTodo(values.text);
+        
         bag.resetForm();
       }}
       validations={validations}
