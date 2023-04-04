@@ -8,8 +8,13 @@ export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: "12312312",
+      text: "Go Shopping",
       completed: true,
+    },
+    {
+      id: 2,
+      text: "Go Gym",
+      completed: false,
     },
   ]);
 
