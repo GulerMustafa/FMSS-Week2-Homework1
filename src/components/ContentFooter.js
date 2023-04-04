@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTodo } from "../contexts/TodoContext";
 
 function Footer() {
   const { todos, filter, setFilter, setTodos } = useTodo();
+
+  useEffect(() => {
+    console.log(todos);
+    console.log(todos.some((t) => t.completed));
+  }, [todos]);
 
   const clearCompleted = () => {
     setTodos((prev) => prev.filter((todo) => !todo.completed));
@@ -45,9 +50,11 @@ function Footer() {
         </li>
       </ul>
 
-      <button className="clear-completed" onClick={clearCompleted}>
-        Clear completed
-      </button>
+      {todos.some((t) => t.completed) && (
+        <button className={"clear-completed"} onClick={clearCompleted}>
+          Clear completed
+        </button>
+      )}
     </footer>
   );
 }
